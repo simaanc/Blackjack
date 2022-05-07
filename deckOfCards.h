@@ -41,6 +41,7 @@ public:
     void addCard(Card);
     void generateDeck();
     void printDeck();
+    void makeEmpty();
 
 };
 #endif //BLACKJACK_DECKOFCARDS_H

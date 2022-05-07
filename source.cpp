@@ -8,6 +8,8 @@ int main() {
     obj1.printDeck();
     obj1.generateDeck(); //testing
     obj1.printDeck();
+    obj1.makeEmpty();
+    obj1.printDeck();
     return 0;
 
 }

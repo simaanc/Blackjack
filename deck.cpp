@@ -14,7 +14,7 @@ void Deck::addCard(Card oCard)
     size ++;
 }
 void Deck::generateDeck() {
-    Deck();
+    makeEmpty();
 
     for (Ranks i = ACE; i <= KING; i = Ranks(i+1)){
         for (Suits j = CLUB; j <= SPADE; j = Suits(j+1)){
@@ -23,8 +23,7 @@ void Deck::generateDeck() {
             std::cout << "Add "<< oCard.toString() << " into the deck!!!" << std::endl;
         }
     }
-    std::cout << " Successfully generate deck with " << size << " cards" << std::endl;
-}
+    std::cout << " Successfully generate deck with " << size << " cards" << std::endl;}
 
 void Deck::printDeck(){
     if (size == 0)   std::cout << "Empty Deck!!!" << std::endl;
@@ -32,6 +31,10 @@ void Deck::printDeck(){
         for (int count = 0; count < size; count++)
             std::cout << list[count].toString() << std::endl;
     }
+}
+
+void Deck::makeEmpty() {
+    size = 0;
 }
 
 
