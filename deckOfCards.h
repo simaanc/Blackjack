@@ -36,12 +36,19 @@ private:
     static const int MaxSize = 52;
     Card list[MaxSize];
     int size;
+    int pos;
 public:
     Deck();
     void addCard(Card);
     void generateDeck();
     void printDeck();
     void makeEmpty();
+    bool isEmpty();
+    void resetDeck();
+    Card getNextCard();
+    void shuffle();
+
+
 
 };
 #endif //BLACKJACK_DECKOFCARDS_H
