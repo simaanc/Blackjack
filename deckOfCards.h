@@ -35,8 +35,7 @@ class Deck{
 private:
     static const int MaxSize = 52;
     Card list[MaxSize];
-    int size;
-    int pos;
+    int size, pos;
 public:
     Deck();
     void addCard(Card);
@@ -44,9 +43,9 @@ public:
     void printDeck();
     void makeEmpty();
     bool isEmpty();
-    void resetDeck();
-    Card getNextCard();
+    void getCard();
     void shuffle();
+
 
 
 
