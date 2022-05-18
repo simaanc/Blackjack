@@ -3,7 +3,17 @@
 //
 #include "Deck.h"
 #include <iostream>
+#include <random>
 #include <string>
+
+//Libraries that make cards work 
+//properly in Windows Terminal
+#ifdef _WIN32
+#include <fcntl.h>
+#include <io.h>
+#include <Windows.h>
+#endif
+
 
 Deck merge(Deck, Deck);
 
@@ -53,28 +63,39 @@ bool Deck::isEmpty() {
     }
 }
 
-
 void Deck::getCard() {
     if (!isEmpty()) {
 
         std::cout << list[size - 1].toString() << std::endl;
 
-        std::string suitSymbol;
+        std::string displayCard = list[size - 1].cardGraphic();
 
-        std::cout << list[size-1].cardGraphic();
+#ifdef _WIN32
+        SetConsoleOutputCP(CP_UTF8);
+        setvbuf(stdout, nullptr, _IOFBF, 1000);
+#endif
+
+        std::cout << displayCard;
+
+        Card pulledCard = list[size - 1];
 
         size--;
 
+        //return pulledCard.toString();
     } else {
         std::cout << "No Cards In Deck" << std::endl;
     }
+
 }
 
 void Deck::shuffle() {
     {
-        srand(time(0));
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(1, 6);
+
         for (int i = 1; i < 52; i++) {
-            int j = rand() % (52 - i) + i;
+            int j = dis(gen) % (52 - i) + i;
             Card tmp = list[i - 1];
             list[i - 1] = list[j];
             list[j] = tmp;

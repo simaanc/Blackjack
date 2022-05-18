@@ -6,15 +6,25 @@
 #define BLACKJACK_HAND_H
 
 #include <string>
+#include "Deck.h"
 
 class Hand {
+private:
+
+    static const int size = 5;
+
+    Card hand[size];
+
 public:
     Hand();
 
+    //Initialize Deck with 2 Cards
+    Hand(Card *card1, Card *card2);
+
     ~Hand();
 
-    //Add card to hand
-    bool addCard();
+    //draw card to hand
+    bool drawCard(Deck deck);
 
     //Get number of cards in hand
     int getCardCount();

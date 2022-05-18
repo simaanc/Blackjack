@@ -2,19 +2,32 @@
 // Created by Chris Simaan on 5/15/22.
 //
 
+#include <iostream>
 #include "Hand.h"
 
 Hand::Hand() {
 
 }
 
+Hand::Hand(Card *card1, Card *card2) {
+
+}
+
+
 Hand::~Hand() {
 
 }
 
-bool Hand::addCard() {
+bool Hand::drawCard(Deck deck) {
+    if (canDraw()) {
+        //std::cout << deck.getCard();
+        //hand[0] = deck.getCard();
+        return true;
+    } else
     return false;
 }
+
+
 
 int Hand::getCardCount() {
     return 0;
@@ -51,5 +64,4 @@ bool Hand::isBlackJack() {
 std::string Hand::getCardsInHand() {
     return std::string();
 }
-
 

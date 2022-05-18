@@ -30,7 +30,7 @@ std::string Card::cardGraphic() {
 
     std::string convertRanks[13] = {"A", "2", "3", "4", "5", "6", "7",
                                     "8", "9", "10", "J", "Q", "K"};
-    std::string convertSuits[4] = {"\u2663", "\u2666", "\u2665", "\u2660"};
+    std::string convertSuits[4] = {"♣", "♦", "♥", "♠"};
 
 std::string color;
 
