@@ -19,14 +19,14 @@ Deck merge(Deck, Deck);
 
 
 Deck::Deck() {
-    size = 0;
+    deckSize = 0;
     pos = -1;
 }
 
 void Deck::addCard(Card oCard) {
-    if (size > MaxSize) return;
-    list[size] = oCard;
-    size++;
+    if (deckSize > MaxSize) return;
+    list[deckSize] = oCard;
+    deckSize++;
 }
 
 void Deck::generateDeck() {
@@ -37,14 +37,14 @@ void Deck::generateDeck() {
             addCard(Card(i, j));
         }
     }
-    std::cout << " Successfully generate deck with " << size << " cards\n";
+    std::cout << " Successfully generate deck with " << deckSize << " cards\n";
 }
 
 void Deck::printDeck() {
     if (isEmpty()) std::cout << "Empty Deck!!!\n";
     else {
-        std::cout << "There are " << size << " cards left in the deck\n";
-        for (int i = 0; i < size; i++) {
+        std::cout << "There are " << deckSize << " cards left in the deck\n";
+        for (int i = 0; i < deckSize; i++) {
 
             std::cout << list[i].toString() << "\n";
         }
@@ -52,34 +52,34 @@ void Deck::printDeck() {
 }
 
 void Deck::makeEmpty() {
-    size = 0;
+    deckSize = 0;
 }
 
 bool Deck::isEmpty() {
-    if (size == 0) {
+    if (deckSize == 0) {
         return true;
     } else {
         return false;
     }
 }
 
-void Deck::getCard() {
+Card Deck::getCard() {
     if (!isEmpty()) {
-
-        std::cout << list[size - 1].toString() << std::endl;
-
-        std::string displayCard = list[size - 1].cardGraphic();
 
 #ifdef _WIN32
         SetConsoleOutputCP(CP_UTF8);
         setvbuf(stdout, nullptr, _IOFBF, 1000);
 #endif
 
-        std::cout << displayCard;
+        std::cout << list[deckSize - 1].toString() << std::endl;
 
-        Card pulledCard = list[size - 1];
+        std::string displayCard = list[deckSize - 1].cardGraphic();
 
-        size--;
+        Card pulledCard = list[deckSize - 1];
+
+        deckSize--;
+
+        return pulledCard;
 
         //return pulledCard.toString();
     } else {

@@ -32,49 +32,50 @@ std::string Card::cardGraphic() {
                                     "8", "9", "10", "J", "Q", "K"};
     std::string convertSuits[4] = {"♣", "♦", "♥", "♠"};
 
-std::string color;
+    std::string color;
 
-if (suit == 1 or suit == 2) {
-    color = "\033[0;31m";
-} else {
-    color = "\033[0m";
-}
-
-    if (rank == 9) {
-        std::string graphic =
-                //Top
-                "┌─────────┐\n"
-                "│ " + color + convertRanks[rank] + "\033[0m      │\n" +
-                //Side
-                "│         │\n" +
-                //Suit
-                "│    " + color + convertSuits[suit] + "\033[0m    │\n" +
-                //Side
-                "│         │\n" +
-                //Check if Double Width + Rank
-                "│      " + color + convertRanks[rank] + "\033[0m │\n" +
-                //Buttom
-                "└─────────┘\n";
-        return graphic;
+    if (suit == 1 or suit == 2) {
+        color = "\033[0;31m";
     } else {
-        std::string graphic =
-                //Top
-                "┌─────────┐\n"
-                //Check if Double Width + Rank
-                "│ "  + color + convertRanks[rank] + "\033[0m       │\n" +
-                //Side
-                "│         │\n" +
-                //Suit
-                "│    "  + color + convertSuits[suit] + "\033[0m    │\n" +
-                //Side
-                "│         │\n" +
-                //Check if Double Width + Rank
-                "│       "  + color + convertRanks[rank] + "\033[0m │\n" +
-                //Buttom
-                "└─────────┘\n";
-        return graphic;
+        color = "\033[0m";
     }
 
+    if (rank == 9) {
+        //Top
+        std::string top = "┌─────────┐\n";
+
+        std::string sidetop = "│ " + color + convertRanks[rank] + "\033[0m      │\n";
+        //Side
+        std::string side = "│         │\n";
+        //Suit
+        std::string suitg = "│    " + color + convertSuits[suit] + "\033[0m    │\n";
+
+        //Check if Double Width + Rank
+        std::string sidebottom = "│      " + color + convertRanks[rank] + "\033[0m │\n";
+
+        //Buttom
+        std::string bottom = "└─────────┘\n";
+
+        return top + sidetop + side + suitg + side + sidebottom + bottom;
+    } else {
+
+        //Top
+        std::string top = "┌─────────┐\n";
+
+        std::string sidetop = "│ " + color + convertRanks[rank] + "\033[0m       │\n";
+        //Side
+        std::string side = "│         │\n";
+        //Suit
+        std::string suitg = "│    " + color + convertSuits[suit] + "\033[0m    │\n";
+
+        //Check if Double Width + Rank
+        std::string sidebottom = "│       " + color + convertRanks[rank] + "\033[0m │\n";
+
+        //Buttom
+        std::string bottom = "└─────────┘\n";
+
+        return top + sidetop + side + suitg + side + sidebottom + bottom;
+    }
 }
 
 

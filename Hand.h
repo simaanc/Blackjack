@@ -11,9 +11,11 @@
 class Hand {
 private:
 
-    static const int size = 5;
+    static const int maxSize = 4;
 
-    Card hand[size];
+    int handSize = 0;
+
+    Card hand[maxSize];
 
 public:
     Hand();
@@ -24,7 +26,7 @@ public:
     ~Hand();
 
     //draw card to hand
-    bool drawCard(Deck deck);
+    bool drawCard(Deck*);
 
     //Get number of cards in hand
     int getCardCount();
@@ -50,8 +52,10 @@ public:
     //Checks if hand is blackjack
     bool isBlackJack();
 
-    //Returns hand as a string
-    std::string getCardsInHand();
+    //Returns hand as a string with formatted card graphic
+    void getCardsInHand();
+
+    std::string getHandGraphic();
 };
 
 

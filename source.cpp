@@ -5,23 +5,29 @@
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    Deck obj1;
+    Deck deck;
     Hand hand;
     std::cout << "Deck before generate!!\n";
-    obj1.printDeck();
-    obj1.generateDeck(); //testing
+    deck.printDeck();
+    deck.generateDeck(); //testing
     std::cout << "Deck after generate!!\n";
-    //obj1.printDeck();
-    obj1.shuffle();
-    obj1.shuffle();
-    obj1.shuffle();
-    obj1.shuffle();
-    std::cout << "Deck after shuffle 1 time!!\n";
-    //obj1.printDeck();
-    std::cout << "Deck after get 1 card!!\n";
-    hand.drawCard(obj1);
-    obj1.getCard();
-    //obj1.printDeck();
+    //deck.printDeck();
+    deck.shuffle();
+    deck.shuffle();
+    deck.shuffle();
+    deck.shuffle();
+    //deck.printDeck();
+
+    //Drawing Cards
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+
+    std::cout << "\nYour Hand:\n";
+    hand.getCardsInHand();
+    //deck.printDeck();
 
     return 0;
 
