@@ -55,7 +55,11 @@ bool Hand::isBust() {
 }
 
 bool Hand::isCharlie() {
-    return false;
+    if (handSize == maxSize and isPlayer) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool Hand::canDraw() {
@@ -91,6 +95,35 @@ std::string Hand::getHandGraphic() {
     //Buttom
     std::string bottom = "└─────────┘ ";
 
+
+    std::string sidetop1;
+    std::string suit1;
+    std::string sidebottom1;
+
+    std::string sidetop2;
+    std::string suit2;
+    std::string sidebottom2;
+
+    std::string sidetop3;
+    std::string suit3;
+    std::string sidebottom3;
+
+    std::string sidetop4;
+    std::string suit4;
+    std::string sidebottom4;
+
+    std::string sidetop5;
+    std::string suit5;
+    std::string sidebottom5;
+
+    std::string color1;
+    std::string color2;
+    std::string color3;
+    std::string color4;
+    std::string color5;
+
+    std::string newline = "\n";
+
     if (handSize == 1) {
         std::string color;
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
@@ -113,19 +146,6 @@ std::string Hand::getHandGraphic() {
             return top + sidetop + side + suit + side + sidebottom + bottom;
         }
     } else if (handSize == 2) {
-
-        std::string sidetop1;
-        std::string suit1;
-        std::string sidebottom1;
-
-        std::string sidetop2;
-        std::string suit2;
-        std::string sidebottom2;
-
-        std::string color1;
-        std::string color2;
-
-        std::string newline = "\n";
 
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
             color1 = "\033[0;31m";
@@ -172,24 +192,6 @@ std::string Hand::getHandGraphic() {
                 sidebottom1 + sidebottom2 + newline +
                 bottom + bottom;
     } else if (handSize == 3) {
-
-        std::string sidetop1;
-        std::string suit1;
-        std::string sidebottom1;
-
-        std::string sidetop2;
-        std::string suit2;
-        std::string sidebottom2;
-
-        std::string sidetop3;
-        std::string suit3;
-        std::string sidebottom3;
-
-        std::string color1;
-        std::string color2;
-        std::string color3;
-
-        std::string newline = "\n";
 
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
             color1 = "\033[0;31m";
@@ -256,29 +258,6 @@ std::string Hand::getHandGraphic() {
                 sidebottom1 + sidebottom2 + sidebottom3 + newline +
                 bottom + bottom + bottom;
     } else if (handSize == 4) {
-
-        std::string sidetop1;
-        std::string suit1;
-        std::string sidebottom1;
-
-        std::string sidetop2;
-        std::string suit2;
-        std::string sidebottom2;
-
-        std::string sidetop3;
-        std::string suit3;
-        std::string sidebottom3;
-
-        std::string sidetop4;
-        std::string suit4;
-        std::string sidebottom4;
-
-        std::string color1;
-        std::string color2;
-        std::string color3;
-        std::string color4;
-
-        std::string newline = "\n";
 
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
             color1 = "\033[0;31m";
@@ -362,31 +341,6 @@ std::string Hand::getHandGraphic() {
                 sidebottom1 + sidebottom2 + sidebottom3 + sidebottom4 + newline +
                 bottom + bottom + bottom + bottom;
     } else if (handSize == 5) {
-        std::string sidetop1;
-        std::string suit1;
-        std::string sidebottom1;
-
-        std::string sidetop2;
-        std::string suit2;
-        std::string sidebottom2;
-
-        std::string sidetop3;
-        std::string suit3;
-        std::string sidebottom3;
-
-        std::string sidetop4;
-        std::string suit4;
-        std::string sidebottom4;
-
-        std::string sidetop5;
-        std::string suit5;
-        std::string sidebottom5;
-
-        std::string color1;
-        std::string color2;
-        std::string color3;
-        std::string color4;
-        std::string color5;
 
         std::string newline = "\n";
 

@@ -13,9 +13,6 @@ int main() {
     std::cout << "Deck after generate!!\n";
     //deck.printDeck();
     deck.shuffle();
-    deck.shuffle();
-    deck.shuffle();
-    deck.shuffle();
     //deck.printDeck();
 
     //Drawing Cards

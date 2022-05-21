@@ -18,6 +18,8 @@ private:
     Card hand[maxSize];
 
 public:
+    bool isPlayer;
+
     Hand();
 
     //Initialize Deck with 2 Cards
