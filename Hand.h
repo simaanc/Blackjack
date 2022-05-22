@@ -57,7 +57,6 @@ public:
     //Returns hand as a string with formatted card graphic
     void getCardsInHand();
 
-    std::string getHandGraphic();
 };
 
 

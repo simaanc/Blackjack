@@ -1,6 +1,10 @@
-//
-// Created by duc on 5/6/2022.
-//
+/*
+     CS281 – Spring 2022
+              Card Game Project
+              Christopher Simaan & Duc Nguyen
+              5/21/2022
+              Card Specific Values
+*/
 
 #include "Deck.h"
 

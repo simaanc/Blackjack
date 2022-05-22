@@ -1,6 +1,11 @@
-//
-// Created by duc on 5/6/2022.
-//
+/*
+     CS281 – Spring 2022
+              Card Game Project
+              Christopher Simaan & Duc Nguyen
+              5/21/2022
+              Deck Logic
+*/
+
 #include "Deck.h"
 #include <iostream>
 #include <random>
@@ -46,7 +51,7 @@ void Deck::printDeck() {
         std::cout << "There are " << deckSize << " cards left in the deck\n";
         for (int i = 0; i < deckSize; i++) {
 
-            std::cout << list[i].toString() << "\n";
+            std::cout << (i+1) << ". " << list[i].toString() << "\n";
         }
     }
 }
@@ -91,15 +96,18 @@ Card Deck::getCard() {
 
 void Deck::shuffle() {
     {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(1, 6);
+        if (isEmpty()) {
+            std::cout << "Deck is Empty!" << std::endl;
+        }
+        else {
+            srand(time(0));
 
-        for (int i = 1; i < 52; i++) {
-            int j = dis(gen) % (52 - i) + i;
-            Card tmp = list[i - 1];
-            list[i - 1] = list[j];
-            list[j] = tmp;
+            for (int i = 1; i < 52; i++) {
+                int j = rand() % (52 - i) + i;
+                Card tmp = list[i - 1];
+                list[i - 1] = list[j];
+                list[j] = tmp;
+            }
         }
     }
 }

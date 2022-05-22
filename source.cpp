@@ -1,3 +1,11 @@
+/*
+     CS281 – Spring 2022
+              Card Game Project
+              Christopher Simaan & Duc Nguyen
+              5/21/2022
+              Black Jack Game
+*/
+
 #include <iostream>
 #include "Deck.h"
 #include "Hand.h"
@@ -14,31 +22,33 @@ int main() {
 
     int input = 0;
 
-    //std::cout << "Deck before generate!!\n";
+    std::cout << "Deck before generate!!\n";
+    deck.printDeck();
+    deck.generateDeck(); //testing
+    std::cout << "Deck after generate!!\n";
     //deck.printDeck();
-    //deck.generateDeck(); //testing
-    //std::cout << "Deck after generate!!\n";
-    ////deck.printDeck();
-    //deck.shuffle();
-    ////deck.printDeck();
-
-    ////Drawing Cards
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-
-    //std::cout << "\nYour Hand:\n";
-    //hand.getCardsInHand();
+    deck.shuffle();
+    deck.shuffle();
+    deck.shuffle();
+    deck.shuffle();
     //deck.printDeck();
 
+    //Drawing Cards
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
+    hand.drawCard(&deck);
 
-    do {
+    std::cout << "\nYour Hand:\n";
+    hand.getCardsInHand();
+    std::cout << "\nOne Score: " << hand.getOneScore() << std::endl;
+    std::cout << "\nEleven Score: " << hand.getElevenScore() << std::endl;
+
+    //deck.printDeck();
+
+
+   /* do {
         input = menu();
         switch (input) {
         case 1:
@@ -49,7 +59,6 @@ int main() {
             break;
         case 2:
             deck.shuffle();
-            std::cout << "Shuffle Deck";
 
             pauseScreen();
             break;
@@ -75,7 +84,7 @@ int main() {
         clearScreen();
     } while (input != 6);
 
-    return 0;
+    return 0;*/
 
 }
 

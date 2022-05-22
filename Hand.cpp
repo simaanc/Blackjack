@@ -1,6 +1,10 @@
-//
-// Created by Chris Simaan on 5/15/22.
-//
+/*
+     CS281 – Spring 2022
+              Card Game Project
+              Christopher Simaan & Duc Nguyen
+              5/21/2022
+              Hand Logic
+*/
 
 #include <iostream>
 #include "Hand.h"
@@ -39,11 +43,105 @@ int Hand::getCardCount() {
 }
 
 int Hand::getElevenScore() {
-    return 0;
+    int score = 0;
+
+    for (int i = 0; i <= handSize-1; i++) {
+        std::cout << hand[i].getRank() << "\n";
+        switch (hand[i].getRank()) {
+        case ACE:
+            score = score + 11;
+            break;
+        case TWO:
+            score = score + 2;
+            break;
+        case THREE:
+            score = score + 3;
+            break;
+        case FOUR:
+            score = score + 4;
+            break;
+        case FIVE:
+            score = score + 5;
+            break;
+        case SIX:
+            score = score + 6;
+            break;
+        case SEVEN:
+            score = score + 7;
+            break;
+        case EIGHT:
+            score = score + 8;
+            break;
+        case NINE:
+            score = score + 9;
+            break;
+        case TEN:
+            score = score + 10;
+            break;
+        case KING:
+            score = score + 10;
+            break;
+        case QUEEN:
+            score = score + 10;
+            break;
+        case JACK:
+            score = score + 10;
+            break;
+        }
+    }
+
+    return score;
 }
 
 int Hand::getOneScore() {
-    return 0;
+    int score = 0;
+
+    for (int i = 0; i <= handSize-1; i++) {
+        std::cout << "\n" << hand[i].getRank();
+
+        switch (hand[i].getRank()) {
+        case ACE:
+            score = score + 1;
+            break;
+        case TWO:
+            score = score + 2;
+            break;
+        case THREE:
+            score = score + 3;
+            break;
+        case FOUR:
+            score = score + 4;
+            break;
+        case FIVE:
+            score = score + 5;
+            break;
+        case SIX:
+            score = score + 6;
+            break;
+        case SEVEN:
+            score = score + 7;
+            break;
+        case EIGHT:
+            score = score + 8;
+            break;
+        case NINE:
+            score = score + 9;
+            break;
+        case TEN:
+            score = score + 10;
+            break;
+        case KING:
+            score = score + 10;
+            break;
+        case QUEEN:
+            score = score + 10;
+            break;
+        case JACK:
+            score = score + 10;
+            break;
+        }
+    }
+    return score;
 }
 
 void Hand::clear() {
@@ -125,26 +223,36 @@ std::string Hand::getHandGraphic() {
     std::string newline = "\n";
 
     if (handSize == 1) {
-        std::string color;
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
-            color = "\033[0;31m";
-        } else {
-            color = "\033[0m";
+            color1 = "\033[0;31m";
+        }
+        else {
+            color1 = "\033[0m";
         }
 
         if (hand[0].getRank() == 9) {
-            std::string sidetop = "│ " + color + convertRanks[hand[0].getRank()] + "\033[0m      │\n";
-            std::string suit = "│    " + color + convertSuits[hand[0].getSuits()] + "\033[0m    │\n";
-            std::string sidebottom = "│      " + color + convertRanks[hand[0].getRank()] + "\033[0m │\n";
+            sidetop1 = "│ " + color1 + convertRanks[hand[0].getRank()] + "\033[0m      │ ";
+            suit1 = "│    " + color1 + convertSuits[hand[0].getSuits()] + "\033[0m    │ ";
+            sidebottom1 = "│      " + color1 + convertRanks[hand[0].getRank()] + "\033[0m │ ";
 
-            return top + sidetop + side + suit + side + sidebottom + bottom;
-        } else {
-            std::string sidetop = "│ " + color + convertRanks[hand[0].getRank()] + "\033[0m       │\n";
-            std::string suit = "│    " + color + convertSuits[hand[0].getSuits()] + "\033[0m    │\n";
-            std::string sidebottom = "│       " + color + convertRanks[hand[0].getRank()] + "\033[0m │\n";
-
-            return top + sidetop + side + suit + side + sidebottom + bottom;
         }
+        else {
+            sidetop1 = "│ " + color1 + convertRanks[hand[0].getRank()] + "\033[0m       │ ";
+            suit1 = "│    " + color1 + convertSuits[hand[0].getSuits()] + "\033[0m    │ ";
+            sidebottom1 = "│       " + color1 + convertRanks[hand[0].getRank()] + "\033[0m │ ";
+
+        }
+
+
+        return
+            top + newline +
+            sidetop1 + newline +
+            side + newline +
+            suit1 + newline +
+            side + newline +
+            sidebottom1 + newline +
+            bottom;
+        
     } else if (handSize == 2) {
 
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
