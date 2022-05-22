@@ -63,7 +63,7 @@ bool Hand::isCharlie() {
 }
 
 bool Hand::canDraw() {
-    if (handSize <= maxSize)
+    if (handSize <= maxSize-1)
         return true;
     else {
         std::cout << "Can't Draw Any More Than 5 Cards\n";

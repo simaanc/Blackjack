@@ -76,6 +76,7 @@ Card Deck::getCard() {
         std::string displayCard = list[deckSize - 1].cardGraphic();
 
         Card pulledCard = list[deckSize - 1];
+        pulledCard.cardGraphic();
 
         deckSize--;
 

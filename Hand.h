@@ -11,7 +11,7 @@
 class Hand {
 private:
 
-    static const int maxSize = 4;
+    static const int maxSize = 5;
 
     int handSize = 0;
 
@@ -29,7 +29,7 @@ public:
 
     //draw card to hand
     bool drawCard(Deck*);
-
+    
     //Get number of cards in hand
     int getCardCount();
 
