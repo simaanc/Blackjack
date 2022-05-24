@@ -9,7 +9,8 @@
 class Player {
 
 private:
-    
+    int money;
+    int bet;
 public:
     Player();
     ~Player();
