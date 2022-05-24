@@ -37,13 +37,17 @@ int main() {
     hand.drawCard(&deck);
     hand.drawCard(&deck);
     hand.drawCard(&deck);
-    hand.drawCard(&deck);
-    hand.drawCard(&deck);
+    //hand.drawCard(&deck);
+    //hand.drawCard(&deck);
 
     std::cout << "\nYour Hand:\n";
     hand.getCardsInHand();
     std::cout << "\nOne Score: " << hand.getOneScore() << std::endl;
+    if (hand.isBust())  std::cout << ":(((";
+    else std::cout << "Phew";
     std::cout << "\nEleven Score: " << hand.getElevenScore() << std::endl;
+    if (hand.isBust())  std::cout << ":(((";
+    else std::cout << "Phew";
 
     //deck.printDeck();
 

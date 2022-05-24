@@ -46,7 +46,7 @@ int Hand::getElevenScore() {
     int score = 0;
 
     for (int i = 0; i <= handSize-1; i++) {
-        std::cout << hand[i].getRank() << "\n";
+        //std::cout << hand[i].getRank() << "\n";
         switch (hand[i].getRank()) {
         case ACE:
             score = score + 11;
@@ -97,7 +97,7 @@ int Hand::getOneScore() {
     int score = 0;
 
     for (int i = 0; i <= handSize-1; i++) {
-        std::cout << "\n" << hand[i].getRank();
+        //std::cout << "\n" << hand[i].getRank();
 
         switch (hand[i].getRank()) {
         case ACE:
@@ -149,7 +149,10 @@ void Hand::clear() {
 }
 
 bool Hand::isBust() {
-    return false;
+    if (getOneScore() > 21 || getElevenScore() > 21)
+        return true;
+    else
+        return false;
 }
 
 bool Hand::isCharlie() {
@@ -170,7 +173,10 @@ bool Hand::canDraw() {
 }
 
 bool Hand::isBlackJack() {
-    return false;
+    if (handSize == 2 && getElevenScore() == 21)
+        return true;
+    else
+        return false;
 }
 
 void Hand::getCardsInHand() {
