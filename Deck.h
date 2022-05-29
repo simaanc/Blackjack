@@ -1,9 +1,7 @@
 //
 // Created by duc on 5/4/2022.
 //
-
-#ifndef BLACKJACK_DECK_H
-#define BLACKJACK_DECK_H
+#pragma once
 
 #include <string>
 
@@ -40,7 +38,7 @@ public:
 
 class Deck {
 private:
-    static const int MaxSize = 52;
+    static const int MaxSize = 312;
     Card list[MaxSize];
     int deckSize, pos;
 public:
@@ -49,6 +47,10 @@ public:
     void addCard(Card);
 
     void generateDeck();
+
+    void generateCasinoDeck();
+
+    bool checkShouldReshuffle();
 
     void printDeck();
 
@@ -61,5 +63,3 @@ public:
     void shuffle();
 
 };
-
-#endif //BLACKJACK_DECK_H

@@ -2,32 +2,47 @@
 // Created by Chris Simaan on 5/15/22.
 //
 
-#ifndef BLACKJACK_PLAYER_H
-#define BLACKJACK_PLAYER_H
+#pragma once
 
+#include "Hand.h"
 
 class Player {
 
 private:
+    static const int maxHands = 3;
+
+    int numOfHands = 0;
+
+    Hand playerHands[maxHands];
+
     int money;
     int bet;
+
+    int handOneBet;
+    int handTwoBet;
+    int handThreeBet;
+    int handFourBet;
+
 public:
     Player();
     ~Player();
 
-    void setBet(int bet);
+    void setBet(int bet, Hand *hand);
 
-    int getBet();
+    int getBet(Hand *hand);
 
-    void stand();
+    void stand(Hand *hand);
 
-    void hit();
+    void hit(Hand *hand);
 
-    void dub();
+    bool checkDub(Hand *hand);
 
-    void split();
+    bool checkSplit(Hand *hand);
 
+    void dub(Hand *hand);
+
+    void split(Hand *hand);
+
+    //Returns specific hand from 2D array
+    Hand returnHand(int handNumber);
 };
-
-
-#endif //BLACKJACK_PLAYER_H

@@ -15,8 +15,6 @@ void clearScreen();
 void pauseScreen();
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-
     Deck deck;
     Hand hand;
 
@@ -24,7 +22,7 @@ int main() {
 
     std::cout << "Deck before generate!!\n";
     deck.printDeck();
-    deck.generateDeck(); //testing
+    deck.generateCasinoDeck(); //testing
     std::cout << "Deck after generate!!\n";
     //deck.printDeck();
     deck.shuffle();
@@ -39,16 +37,16 @@ int main() {
     hand.drawCard(&deck);
     //hand.drawCard(&deck);
     //hand.drawCard(&deck);
+    //hand.drawCard(&deck);
 
     std::cout << "\nYour Hand:\n";
     hand.getCardsInHand();
     std::cout << "\nOne Score: " << hand.getOneScore() << std::endl;
-    if (hand.isBust())  std::cout << ":(((";
+    if (hand.isBustOne())  std::cout << ":(((";
     else std::cout << "Phew";
     std::cout << "\nEleven Score: " << hand.getElevenScore() << std::endl;
-    if (hand.isBust())  std::cout << ":(((";
+    if (hand.isBustEleven())  std::cout << ":(((";
     else std::cout << "Phew";
-
     //deck.printDeck();
 
 

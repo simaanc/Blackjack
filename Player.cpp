@@ -9,16 +9,59 @@
 #include "Player.h"
 
 Player::Player() {
-    money = 500;
+    money = 50000;
     bet = 0;
 }
 
-void Player::setBet(int bet)
+void Player::setBet(int bet, Hand *hand)
 {
-    this->bet = bet;
+    hand->bet = bet;
 }
 
-int Player::getBet()
+int Player::getBet(Hand* hand)
 {
     return bet;
+}
+
+void Player::stand(Hand* hand)
+{
+
+}
+
+void Player::hit(Hand *hand)
+{
+    
+}
+
+bool Player::checkDub(Hand* hand)
+{
+    if (hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool Player::checkSplit(Hand* hand)
+{
+    if (hand->getCardValue(1) == hand->getCardValue(2)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Player::dub(Hand* hand) {
+
+}
+
+void Player::split(Hand* hand) {
+
+}
+
+Hand Player::returnHand(int handNumber)
+{
+    return playerHands[handNumber];
 }

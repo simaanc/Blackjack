@@ -2,8 +2,7 @@
 // Created by Chris Simaan on 5/15/22.
 //
 
-#ifndef BLACKJACK_HAND_H
-#define BLACKJACK_HAND_H
+#pragma once
 
 #include <string>
 #include "Deck.h"
@@ -17,8 +16,11 @@ private:
 
     Card hand[maxSize];
 
+
 public:
     bool isPlayer;
+
+    int bet = 0;
 
     Hand();
 
@@ -39,11 +41,16 @@ public:
     //Get score if Ace is counted as a 1
     int getOneScore();
 
+    int getCardValue(int card);
+
     //Clear the hand
     void clear();
 
-    //Checks if Player/Dealer Hand > 21
-    bool isBust();
+    //Checks if Player/Dealer Hand > 21 if Ace = 1
+    bool isBustOne();
+
+    //Checks if Player/Dealer Hand > 21 if Ace = 11
+    bool isBustEleven();
 
     //Auto win if player gets 5 cards in their hand without bust
     bool isCharlie();
@@ -54,12 +61,10 @@ public:
     //Checks if hand is blackjack
     bool isBlackJack();
 
-    //Returns hand as a string with formatted card graphic
+    //Displays getHandGraphic(); with formatting
     void getCardsInHand();
 
+    //Returns hand as a string with formatted card graphic
     std::string getHandGraphic();
 
 };
-
-
-#endif //BLACKJACK_HAND_H

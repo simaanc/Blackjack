@@ -45,6 +45,28 @@ void Deck::generateDeck() {
     std::cout << " Successfully generate deck with " << deckSize << " cards\n";
 }
 
+void Deck::generateCasinoDeck() {
+    makeEmpty();
+
+    for (int i = 0; i < 6; i++) {
+        for (Ranks j = ACE; j <= KING; j = Ranks(j + 1)) {
+            for (Suits k = CLUB; k <= SPADE; k = Suits(k + 1)) {
+                addCard(Card(j, k));
+            }
+        }
+    }
+}
+
+bool Deck::checkShouldReshuffle()
+{
+    if (deckSize <= 60) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 void Deck::printDeck() {
     if (isEmpty()) std::cout << "Empty Deck!!!\n";
     else {
@@ -102,8 +124,8 @@ void Deck::shuffle() {
         else {
             srand(time(0));
 
-            for (int i = 1; i < 52; i++) {
-                int j = rand() % (52 - i) + i;
+            for (int i = 1; i < deckSize; i++) {
+                int j = rand() % (deckSize - i) + i;
                 Card tmp = list[i - 1];
                 list[i - 1] = list[j];
                 list[j] = tmp;
