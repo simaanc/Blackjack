@@ -22,11 +22,15 @@ public:
 
 	void playerWin(float mult, Hand* hand);
 
-	void dealerWin();
+	void playerBlackJackWin(Hand* hand);
+
+	void dealerWin(Hand* hand);
 
 	void tie(Hand* hand);
 
 	void redrawHands();
+
+	void checkWinner();
 
 	void redrawRevealedHands();
 

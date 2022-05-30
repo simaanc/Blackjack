@@ -87,15 +87,16 @@ void Blackjack::dealing() {
 
 	clearScreen();
 
-	deck.addCard(Card(SIX, HEART));
-	deck.addCard(Card(SEVEN, HEART));
+
 	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(NINE, HEART));
-	deck.addCard(Card(FIVE, HEART));
-	deck.addCard(Card(ACE, HEART));
-	deck.addCard(Card(KING, HEART));
-	deck.addCard(Card(FIVE, HEART));
-	deck.addCard(Card(ACE, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+	deck.addCard(Card(EIGHT, HEART));
+
 
 	playerHand1.drawCard(&deck);
 
@@ -112,12 +113,14 @@ void Blackjack::dealing() {
 			clearScreenAlt();
 			redrawRevealedHands();
 			tie(&playerHand1);
+			newRound();
 		}
 		//You win if they don't
 		else {
 			clearScreenAlt();
 			redrawRevealedHands();
-			playerWin(1.5, &playerHand1);
+			playerBlackJackWin(&playerHand1);
+			newRound();
 		}
 	}
 	else {
@@ -128,33 +131,38 @@ void Blackjack::dealing() {
 
 void Blackjack::playerWin(float mult, Hand* hand)
 {
-	player.win(mult, hand->bet);
+	player.win(2, hand->bet);
 	
-	newRound();
+}
 
+void Blackjack::playerBlackJackWin(Hand* hand)
+{
+	player.win(3.5, hand->bet);
 }
 
 
-void Blackjack::dealerWin()
-{
+void Blackjack::dealerWin(Hand *hand) {
+	hand->bet = 0;
+	player.win(0, hand->bet);
 
-	newRound();
 }
 
 void Blackjack::tie(Hand *hand)
 {
 	playerWin(1, hand);
 
-	newRound();
 }
 
 void Blackjack::handOnePrompts() {
 	int input;
+
+	std::string hand1Title = "";
+
 	//IF NOT DOUBLE OR SPLIT
 	if (!(player.checkSplit(&playerHand1)) && !(player.checkDub(&playerHand1))) {
 		do {
 			if (!dualHands()) {
-				std::cout << "";
+				std::cout << hand1Title;
 			}
 			else if (dualHands()) {
 				std::cout << "Hand 1:\n";
@@ -165,13 +173,35 @@ void Blackjack::handOnePrompts() {
 			case 1:
 				playerHand1.drawCard(&deck);
 
+				if (playerHand1.isBust() && !dualHands()) {
+					dealerWin(&playerHand1);
+					redrawRevealedHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted :(\n";
+
+					newRound();
+				}
+				else if (playerHand1.isBust() && dualHands()) {
+					dealerWin(&playerHand1);
+					redrawHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted On Hand 1 :(\n";
+
+
+					handTwoPrompts();
+				}
 				break;
 			case 2:
 				if (!dualHands()) {
-					endPlayerTurn();
+					checkWinner();
 				}
 				else if (dualHands()) {
 					redrawHands();
+
 					handTwoPrompts();
 				}
 				break;
@@ -182,6 +212,7 @@ void Blackjack::handOnePrompts() {
 
 	//IF NOT SPLIT BUT DOUBLE
 	else if (!(player.checkSplit(&playerHand1)) && (player.checkDub(&playerHand1))) {
+
 		do {
 			if (!dualHands()) {
 				std::cout << "";
@@ -194,11 +225,35 @@ void Blackjack::handOnePrompts() {
 			case 1:
 				playerHand1.drawCard(&deck);
 
+				std::cout << "B";
 
+
+				if (playerHand1.isBust() && !dualHands()) {
+
+					dealerWin(&playerHand1);
+					redrawRevealedHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted :(\n";
+
+					newRound();
+				}
+				else if (playerHand1.isBust() && dualHands()) {
+					dealerWin(&playerHand1);
+					redrawHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted On Hand 1 :(\n";
+
+
+					handTwoPrompts();
+				}
 				break;
 			case 2:
 				if (!dualHands()) {
-					endPlayerTurn();
+					checkWinner();
 				}
 				else if (dualHands()) {
 					redrawHands();
@@ -219,7 +274,8 @@ void Blackjack::handOnePrompts() {
 
 	}
 	//IF NOT DOUBLE BUT SPLIT
-	else if (!(player.checkDub(&playerHand1)) && (player.checkSplit(&playerHand1))) {
+	else if ((player.checkSplit(&playerHand1)) && !(player.checkDub(&playerHand1))) {
+
 		do {
 			if (!dualHands()) {
 				std::cout << "";
@@ -233,17 +289,38 @@ void Blackjack::handOnePrompts() {
 				playerHand1.drawCard(&deck);
 
 
+
+				if (playerHand1.isBust() && !dualHands()) {
+					dealerWin(&playerHand1);
+					redrawRevealedHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted :(\n";
+
+					newRound();
+				}
+				else if (playerHand1.isBust() && dualHands()) {
+					dealerWin(&playerHand1);
+					redrawHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted On Hand 1 :(\n";
+
+
+					handTwoPrompts();
+				}
 				break;
 			case 2:
 				if (!dualHands()) {
-					endPlayerTurn();
+					checkWinner();
 				}
 				else if (dualHands()) {
-
 					redrawHands();
 
 					handTwoPrompts();
-				}				
+				}
 				break;
 
 			case 3:
@@ -259,6 +336,7 @@ void Blackjack::handOnePrompts() {
 	}
 	//IF BOTH SPLIT AND DOUBLE
 	else if ((player.checkSplit(&playerHand1)) && (player.checkDub(&playerHand1))) {
+
 		do {
 			if (!dualHands()) {
 				std::cout << "";
@@ -271,18 +349,38 @@ void Blackjack::handOnePrompts() {
 			case 1:
 				playerHand1.drawCard(&deck);
 
+				std::cout << "D";
+				if (playerHand1.isBust() && !dualHands()) {
+					dealerWin(&playerHand1);
+					redrawRevealedHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted :(\n";
+
+					newRound();
+				}
+				else if (playerHand1.isBust() && dualHands()) {
+					dealerWin(&playerHand1);
+					redrawHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted On Hand 1 :(\n";
+
+
+					handTwoPrompts();
+				}
 				break;
 			case 2:
-
 				if (!dualHands()) {
-					endPlayerTurn();
+					checkWinner();
 				}
 				else if (dualHands()) {
-
 					redrawHands();
 
 					handTwoPrompts();
-				}				
+				}
 				break;
 
 			case 3:
@@ -377,8 +475,19 @@ void Blackjack::redrawHands() {
 	}
 }
 
+void Blackjack::checkWinner()
+{
+	std::cout.flush();
+
+
+	redrawRevealedHands();
+}
+
 void Blackjack::redrawRevealedHands() {
 	clearScreen();
+	clearScreenAlt();
+
+	std::cout.flush();
 
 	std::cout << "Dealer Hand:\n";
 
@@ -470,7 +579,7 @@ void Blackjack::newRound()
 
 	do
 	{
-		std::cout << "\Would you like to go another round? (Y/N)" << std::endl;
+		std::cout << "\nWould you like to go another round? (Y/N)" << std::endl;
 		std::cin >> input;
 	} while (!std::cin.fail() && input[0] != 'y' && input[0] != 'n' && input[0] != 'Y' && input[0] != 'N');
 	if (input[0] == 'y' || input[0] == 'Y') {
@@ -488,7 +597,7 @@ int Blackjack::handOnePlayerMenu()
 
 	//IF NOT SPLIT OR DOUBLE
 	if (!(player.checkSplit(&playerHand1)) && !(player.checkDub(&playerHand1))) {
-		std::cout << "Enter the number for the operation you wish to perform from the menu." << std::endl
+	std::cout << "Enter the number for the operation you wish to perform from the menu." << std::endl
 			<< "1. Hit" << std::endl
 			<< "2. Stand" << std::endl
 			<< std::endl;
@@ -528,7 +637,7 @@ int Blackjack::handOnePlayerMenu()
 	}
 
 	//IF NOT DOUBLE BUT SPLIT
-	else if (!(player.checkDub(&playerHand1)) && (player.checkDub(&playerHand1))) {
+	else if ((player.checkSplit(&playerHand1)) && !(player.checkDub(&playerHand1))) {
 		std::cout << "Enter the number for the operation you wish to perform from the menu." << std::endl
 			<< "1. Hit" << std::endl
 			<< "2. Stand" << std::endl
