@@ -1,14 +1,6 @@
-﻿/*
-     CS281 – Spring 2022
-              Card Game Project
-              Christopher Simaan & Duc Nguyen
-              5/21/2022
-              Dealer Logic
-*/
-
 #include "Dealer.h"
 
-std::string Dealer::dealerStartHandString(Hand* hand)
+std::string Dealer::dealerBlankHandString(Hand* hand)
 {
     std::string convertRanks[13] = { "A", "2", "3", "4", "5", "6", "7",
                                 "8", "9", "10", "J", "Q", "K" };
@@ -36,7 +28,7 @@ std::string Dealer::dealerStartHandString(Hand* hand)
     std::string color2 = "\033[0m";;
 
     std::string newline = "\n";
-    
+
     Card card1 = hand->getCardFromPosition(0);
 
     if (card1.getSuits() == 1 or card1.getSuits() == 2) {
@@ -59,9 +51,9 @@ std::string Dealer::dealerStartHandString(Hand* hand)
 
     }
 
-        sidetop2 = "│ " + color2 + "?" + "\033[0m       │ ";
-        suit2 = "│    " + color2 + "?" + "\033[0m    │ ";
-        sidebottom2 = "│       " + color2 + "?" + "\033[0m │ ";
+    sidetop2 = "│ " + color2 + "?" + "\033[0m       │ ";
+    suit2 = "│    " + color2 + "?" + "\033[0m    │ ";
+    sidebottom2 = "│       " + color2 + "?" + "\033[0m │ ";
 
 
     return
@@ -74,7 +66,38 @@ std::string Dealer::dealerStartHandString(Hand* hand)
         bottom + bottom + newline;
 }
 
-void Dealer::outputDealerStartHand()
+void Dealer::outputDealerBlankHand(Hand* hand)
 {
-    std::cout << dealerStartHandString;
+    std::cout << dealerBlankHandString(hand);
+}
+
+void Dealer::stand(Hand* hand)
+{
+
+}
+
+void Dealer::hit(Hand* hand, Deck* deck)
+{
+    hand->drawCard(deck);
+}
+
+bool Dealer::hitCheck(Hand* hand)
+{
+    //Check if can draw in general
+    if (hand->canDraw()) {
+        //Check if hand is >= 17
+        if (hand->getElevenScore() >= 17) {
+            return false;
+        }
+        //If it's not dealer will hit
+        else {
+            return true;
+        }
+    } 
+    return false;
+}
+
+void Dealer::clearHand(Hand* hand)
+{
+    hand->clear();
 }

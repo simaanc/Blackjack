@@ -218,6 +218,16 @@ void Hand::clear() {
     handSize = 0;
 }
 
+bool Hand::checkAce()
+{
+    if (getElevenScore() != getOneScore()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 bool Hand::isBustOne() {
     if (getOneScore() > 21)
         return true;

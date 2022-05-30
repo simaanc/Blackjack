@@ -55,6 +55,9 @@ public:
     //Clear the hand
     void clear();
 
+    //Checks for Ace
+    bool checkAce();
+
     //Checks if Player/Dealer Hand > 21 if Ace = 1
     bool isBustOne();
 

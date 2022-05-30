@@ -98,7 +98,7 @@ Card Deck::getCard() {
         setvbuf(stdout, nullptr, _IOFBF, 1000);
 #endif
 
-        std::cout << list[deckSize - 1].toString() << std::endl;
+        //std::cout << list[deckSize - 1].toString() << std::endl;
 
         std::string displayCard = list[deckSize - 1].cardGraphic();
 

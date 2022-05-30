@@ -8,22 +8,26 @@
 
 class Player {
 private:
-    static const int maxHands = 3;
-
     int numOfHands = 0;
 
     int chips;
     int bet;
 
-    int handOneBet;
-    int handTwoBet;
-    int handThreeBet;
-    int handFourBet;
+    //How much payout will be multiplied by
+    int multiplier;
+    //Amount that will be given to player if they win
+    int payout;
 
 public:
     Player(int startingchips);
 
-    void setBet(int bet, Hand *hand);
+    bool setBet(int bet, Hand *hand);
+
+    void setChips(int inputChips);
+
+    int getNumberOfHands();
+
+    int getChips();
 
     int getBet(Hand *hand);
 
@@ -38,4 +42,6 @@ public:
     void dub(Hand *hand);
 
     void split(Hand *hand1, Hand *hand2);
+
+    void clearHands(Hand* hand1, Hand* hand2);
 };

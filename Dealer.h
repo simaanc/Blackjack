@@ -11,10 +11,27 @@ class Dealer {
 
 
 private:
-	std::string dealerStartHandString(Hand* hand);
+	std::string dealerBlankHandString(Hand* hand);
 
 
 public:
 
-	void outputDealerStartHand();
+	void outputDealerBlankHand(Hand* hand);
+
+    void stand(Hand* hand);
+
+    void hit(Hand* hand, Deck* deck);
+
+    bool hitCheck(Hand* hand);
+
+    void clearHand(Hand* hand);
 };
+
+/*
+     CS281 – Spring 2022
+              Card Game Project
+              Christopher Simaan & Duc Nguyen
+              5/21/2022
+              Dealer Logic
+*/
+

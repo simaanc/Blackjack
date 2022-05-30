@@ -15,8 +15,29 @@ Player::Player(int startingchips)
     chips = startingchips;
 }
 
-void Player::setBet(int bet, Hand *hand) {
-    hand->bet = bet;
+bool Player::setBet(int bet, Hand *hand) {
+    if (bet > chips) {
+        return false;
+    }
+    else {
+        hand->bet = bet;
+        chips = chips - bet;
+    }
+}
+
+void Player::setChips(int inputChips)
+{
+    chips = inputChips;
+}
+
+int Player::getNumberOfHands()
+{
+    return numOfHands;
+}
+
+int Player::getChips()
+{
+    return chips;
 }
 
 int Player::getBet(Hand* hand) {
@@ -76,4 +97,12 @@ void Player::split(Hand* hand1, Hand* hand2) {
 
     hand2->bet = hand1bet;
 
+}
+
+void Player::clearHands(Hand* hand1, Hand* hand2)
+{
+    hand1->clear();
+    hand2->clear();
+
+    numOfHands = 0;
 }
