@@ -29,24 +29,45 @@ int main() {
     deck.shuffle();
     deck.shuffle();
     deck.shuffle();
-    //deck.printDeck();
+    deck.printDeck();
 
     //Drawing Cards
     hand.drawCard(&deck);
     hand.drawCard(&deck);
-    hand.drawCard(&deck);
+   //hand.drawCard(&deck);
     //hand.drawCard(&deck);
     //hand.drawCard(&deck);
     //hand.drawCard(&deck);
 
-    std::cout << "\nYour Hand:\n";
+   // std::cout << "\nYour Hand:\n";
     hand.getCardsInHand();
-    std::cout << "\nOne Score: " << hand.getOneScore() << std::endl;
-    if (hand.isBustOne())  std::cout << ":(((";
-    else std::cout << "Phew";
-    std::cout << "\nEleven Score: " << hand.getElevenScore() << std::endl;
-    if (hand.isBustEleven())  std::cout << ":(((";
-    else std::cout << "Phew";
+    //deck.printDeck();
+   // hand.clear();
+   // hand.getCardsInHand();
+    std::cout << "Score: ";
+    std::cout<<hand.getOneScore();
+    std::cout << "\n";
+    //deck.printDeck();
+    hand.clear();
+    //hand.drawCard(&deck);
+    //hand.drawCard(&deck);
+    hand.getCardsInHand();
+    std::cout << "\nScore: ";
+    std::cout << hand.getOneScore();
+    std::cout << "\n";
+    
+   // std::cout << "Score: " << std::endl;
+  //  hand.getOneScore();
+    
+   // std::cout << "Clear hand!!";
+    //hand.clear();
+   // hand.getCardsInHand();
+   // std::cout << "\nOne Score: " << hand.getOneScore() << std::endl;
+   // if (hand.isBustOne())  std::cout << ":(((";
+   // else std::cout << "Phew";
+   // std::cout << "\nEleven Score: " << hand.getElevenScore() << std::endl;
+   // if (hand.isBustEleven())  std::cout << ":(((";
+   // else std::cout << "Phew";
     //deck.printDeck();
 
 

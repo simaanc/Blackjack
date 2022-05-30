@@ -19,7 +19,7 @@ Hand::Hand(Card *card1, Card *card2) {
 
 
 Hand::~Hand() {
-
+    clear();
 }
 
 bool Hand::drawCard(Deck *deck) {
@@ -193,7 +193,8 @@ int Hand::getCardValue(int card)
 }
 
 void Hand::clear() {
-
+    //memset(hand, 0, sizeof hand);
+    handSize = 0;
 }
 
 bool Hand::isBustOne() {
@@ -235,9 +236,10 @@ bool Hand::isBlackJack() {
 }
 
 void Hand::getCardsInHand() {
-    if (handSize >= 0) {
+    if (handSize > 0) {
         std::cout << getHandGraphic();
     }
+    else std::cout << "Nothing";
 }
 
 std::string Hand::getHandGraphic() {
