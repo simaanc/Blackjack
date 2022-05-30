@@ -31,7 +31,11 @@ public:
 
     //draw card to hand
     bool drawCard(Deck*);
+
+    void addCard(Card card);
     
+    void removeCard();
+
     //Get number of cards in hand
     int getCardCount();
 
@@ -40,6 +44,9 @@ public:
 
     //Get score if Ace is counted as a 1
     int getOneScore();
+
+    //Return hand size
+    int getHandSize();
 
     int getCardValue(int card);
 
@@ -67,4 +74,5 @@ public:
     //Returns hand as a string with formatted card graphic
     std::string getHandGraphic();
 
+    Card getCardForSplit();
 };

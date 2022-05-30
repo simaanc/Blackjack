@@ -7,15 +7,12 @@
 #include "Hand.h"
 
 class Player {
-
 private:
     static const int maxHands = 3;
 
     int numOfHands = 0;
 
-    Hand playerHands[maxHands];
-
-    int money;
+    int chips;
     int bet;
 
     int handOneBet;
@@ -24,8 +21,7 @@ private:
     int handFourBet;
 
 public:
-    Player();
-    ~Player();
+    Player(int startingchips);
 
     void setBet(int bet, Hand *hand);
 
@@ -33,7 +29,7 @@ public:
 
     void stand(Hand *hand);
 
-    void hit(Hand *hand);
+    bool hit(Hand *hand, Deck *deck);
 
     bool checkDub(Hand *hand);
 
@@ -41,8 +37,5 @@ public:
 
     void dub(Hand *hand);
 
-    void split(Hand *hand);
-
-    //Returns specific hand from 2D array
-    Hand returnHand(int handNumber);
+    void split(Hand *hand1, Hand *hand2);
 };

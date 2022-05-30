@@ -7,44 +7,47 @@
 */
 
 #include "Player.h"
+#include "Deck.h"
+#include "Hand.h"
 
-Player::Player() {
-    money = 50000;
-    bet = 0;
+Player::Player(int startingchips)
+{
+    chips = startingchips;
 }
 
-void Player::setBet(int bet, Hand *hand)
-{
+void Player::setBet(int bet, Hand *hand) {
     hand->bet = bet;
 }
 
-int Player::getBet(Hand* hand)
-{
+int Player::getBet(Hand* hand) {
     return bet;
 }
 
-void Player::stand(Hand* hand)
-{
+void Player::stand(Hand* hand) {
 
 }
 
-void Player::hit(Hand *hand)
-{
-    
-}
-
-bool Player::checkDub(Hand* hand)
-{
-    if (hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
+bool Player::hit(Hand *hand, Deck *deck) {
+    if (hand->canDraw()) {
+        hand->drawCard(deck);
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
 
-bool Player::checkSplit(Hand* hand)
-{
+bool Player::checkDub(Hand* hand) {
+    if (hand->getHandSize() == 2 && hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
+        if (bet * 2 <= chips) {
+            return true;
+        }
+        return false;
+    } else {
+        return false;
+    }
+}
+
+bool Player::checkSplit(Hand* hand) {
     if (hand->getCardValue(1) == hand->getCardValue(2)) {
         return true;
     }
@@ -57,11 +60,14 @@ void Player::dub(Hand* hand) {
 
 }
 
-void Player::split(Hand* hand) {
+void Player::split(Hand* hand1, Hand* hand2) {
+    numOfHands++;
 
-}
+    hand2->addCard(hand1->getCardForSplit());
+    hand1->removeCard();
 
-Hand Player::returnHand(int handNumber)
-{
-    return playerHands[handNumber];
+    int hand1bet = hand1->bet;
+
+    hand2->bet = hand1bet;
+
 }

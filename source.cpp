@@ -9,6 +9,7 @@
 #include <iostream>
 #include "Deck.h"
 #include "Hand.h"
+#include "Player.h"
 
 int menu();
 void clearScreen();
@@ -17,45 +18,65 @@ void pauseScreen();
 int main() {
     Deck deck;
     Hand hand;
+    Hand playerHand;
+    Hand playerHand2;
+    Player player(50000);
+   // int input = 0;
 
-    int input = 0;
-
-    std::cout << "Deck before generate!!\n";
-    deck.printDeck();
-    deck.generateCasinoDeck(); //testing
-    std::cout << "Deck after generate!!\n";
+   // std::cout << "Deck before generate!!\n";
+   // deck.printDeck();
+   //deck.generateCasinoDeck(); //testing
+   // std::cout << "Deck after generate!!\n";
     //deck.printDeck();
+    deck.addCard(Card(FIVE,HEART));
+    deck.addCard(Card(FIVE,DIAMOND));
+    deck.addCard(Card(FIVE,SPADE));
+    deck.addCard(Card(FIVE,CLUB));
     deck.shuffle();
-    deck.shuffle();
-    deck.shuffle();
-    deck.shuffle();
-    deck.printDeck();
+   // deck.shuffle();
+   // deck.shuffle();
+   // deck.shuffle();
+   // //deck.printDeck();
 
-    //Drawing Cards
-    hand.drawCard(&deck);
-    hand.drawCard(&deck);
-   //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
+   // //Drawing Cards
+   // hand.drawCard(&deck);
+   // hand.drawCard(&deck);
+   ////hand.drawCard(&deck);
+   // //hand.drawCard(&deck);
+   // //hand.drawCard(&deck);
+   // //hand.drawCard(&deck);
 
-   // std::cout << "\nYour Hand:\n";
-    hand.getCardsInHand();
-    //deck.printDeck();
-   // hand.clear();
+   //// std::cout << "\nYour Hand:\n";
    // hand.getCardsInHand();
-    std::cout << "Score: ";
-    std::cout<<hand.getOneScore();
-    std::cout << "\n";
-    //deck.printDeck();
-    hand.clear();
-    //hand.drawCard(&deck);
-    //hand.drawCard(&deck);
-    hand.getCardsInHand();
-    std::cout << "\nScore: ";
-    std::cout << hand.getOneScore();
-    std::cout << "\n";
-    
+   // //deck.printDeck();
+   //// hand.clear();
+   //// hand.getCardsInHand();
+   // std::cout << "Score: ";
+   // std::cout<<hand.getOneScore();
+   // std::cout << "\n";
+   // //deck.printDeck();
+   // hand.clear();
+   // //hand.drawCard(&deck);
+   // //hand.drawCard(&deck);
+   // hand.getCardsInHand();
+   // std::cout << "\nScore: ";
+   // std::cout << hand.getOneScore();
+   // std::cout << "\n";
+
+   // std::cout << hand.getCardForSplit().cardGraphic();
+
+    std::cout << "PLAYER HAND\n";
+
+    player.hit(&playerHand, &deck);
+    player.hit(&playerHand, &deck);
+
+    playerHand.getCardsInHand();
+
+    player.split(&playerHand, &playerHand2);
+
+    playerHand.getCardsInHand();
+    playerHand2.getCardsInHand();
+
    // std::cout << "Score: " << std::endl;
   //  hand.getOneScore();
     

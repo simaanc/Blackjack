@@ -28,13 +28,24 @@ bool Hand::drawCard(Deck *deck) {
 
         hand[handSize] = deck->getCard();
 
-        std::cout << hand[handSize].cardGraphic();
+        //std::cout << hand[handSize].cardGraphic();
 
         handSize++;
 
         return true;
     } else
         return false;
+}
+
+void Hand::addCard(Card card)
+{
+    hand[handSize] = card;
+    handSize++;
+}
+
+void Hand::removeCard()
+{
+    handSize--;
 }
 
 
@@ -144,6 +155,11 @@ int Hand::getOneScore() {
     return score;
 }
 
+int Hand::getHandSize()
+{
+    return handSize;
+}
+
 int Hand::getCardValue(int card)
 {
     int value;
@@ -239,7 +255,7 @@ void Hand::getCardsInHand() {
     if (handSize > 0) {
         std::cout << getHandGraphic();
     }
-    else std::cout << "Nothing";
+    else std::cout << "\nNothing\n";
 }
 
 std::string Hand::getHandGraphic() {
@@ -314,7 +330,7 @@ std::string Hand::getHandGraphic() {
             suit1 + newline +
             side + newline +
             sidebottom1 + newline +
-            bottom;
+            bottom + newline;
         
     } else if (handSize == 2) {
 
@@ -361,7 +377,7 @@ std::string Hand::getHandGraphic() {
                 suit1 + suit2 + newline +
                 side + side + newline +
                 sidebottom1 + sidebottom2 + newline +
-                bottom + bottom;
+                bottom + bottom + newline;
     } else if (handSize == 3) {
 
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
@@ -427,7 +443,7 @@ std::string Hand::getHandGraphic() {
                 suit1 + suit2 + suit3 + newline +
                 side + side + side + newline +
                 sidebottom1 + sidebottom2 + sidebottom3 + newline +
-                bottom + bottom + bottom;
+                bottom + bottom + bottom + newline;
     } else if (handSize == 4) {
 
         if (hand[0].getSuits() == 1 or hand[0].getSuits() == 2) {
@@ -510,7 +526,7 @@ std::string Hand::getHandGraphic() {
                 suit1 + suit2 + suit3 + suit4 + newline +
                 side + side + side + side + newline +
                 sidebottom1 + sidebottom2 + sidebottom3 + sidebottom4 + newline +
-                bottom + bottom + bottom + bottom;
+                bottom + bottom + bottom + bottom + newline;
     } else if (handSize == 5) {
 
         std::string newline = "\n";
@@ -613,6 +629,11 @@ std::string Hand::getHandGraphic() {
                 suit1 + suit2 + suit3 + suit4 + suit5 + newline +
                 side + side + side + side + side +newline +
                 sidebottom1 + sidebottom2 + sidebottom3 + sidebottom4 + sidebottom5 + newline +
-                bottom + bottom + bottom + bottom + bottom;
+                bottom + bottom + bottom + bottom + bottom + newline;
     }
+}
+
+Card Hand::getCardForSplit()
+{
+    return Card(hand[1].getRank(), hand[1].getSuits());
 }
