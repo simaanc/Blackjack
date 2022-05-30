@@ -48,8 +48,14 @@ bool Player::checkDub(Hand* hand) {
 }
 
 bool Player::checkSplit(Hand* hand) {
-    if (hand->getCardValue(1) == hand->getCardValue(2)) {
-        return true;
+    if (hand->getHandSize() > 1) {
+
+        if (hand->getCardValue(0) == hand->getCardValue(1)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     else {
         return false;

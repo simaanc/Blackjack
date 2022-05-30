@@ -50,6 +50,8 @@ public:
 
     int getCardValue(int card);
 
+    Card getCardFromPosition(int pos);
+
     //Clear the hand
     void clear();
 
@@ -75,4 +77,5 @@ public:
     std::string getHandGraphic();
 
     Card getCardForSplit();
+
 };

@@ -208,6 +208,11 @@ int Hand::getCardValue(int card)
     return value;
 }
 
+Card Hand::getCardFromPosition(int pos)
+{
+    return hand[pos];
+}
+
 void Hand::clear() {
     //memset(hand, 0, sizeof hand);
     handSize = 0;
@@ -255,7 +260,7 @@ void Hand::getCardsInHand() {
     if (handSize > 0) {
         std::cout << getHandGraphic();
     }
-    else std::cout << "\nNothing\n";
+    else std::cout << "Empty\n";
 }
 
 std::string Hand::getHandGraphic() {

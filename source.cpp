@@ -10,141 +10,72 @@
 #include "Deck.h"
 #include "Hand.h"
 #include "Player.h"
+#include "Dealer.h"
 
-int menu();
+int baseMenu();
+int testMenuPrompt();
+
+void testMenu();
+
 void clearScreen();
 void pauseScreen();
 
 int main() {
     Deck deck;
-    Hand hand;
+
     Hand playerHand;
     Hand playerHand2;
+
+    Hand dealerHand;
+
     Player player(50000);
-   // int input = 0;
 
-   // std::cout << "Deck before generate!!\n";
-   // deck.printDeck();
-   //deck.generateCasinoDeck(); //testing
-   // std::cout << "Deck after generate!!\n";
-    //deck.printDeck();
-    deck.addCard(Card(FIVE,HEART));
-    deck.addCard(Card(FIVE,DIAMOND));
-    deck.addCard(Card(FIVE,SPADE));
-    deck.addCard(Card(FIVE,CLUB));
+    Dealer dealer;
+    int input = 0;
+
+    deck.generateCasinoDeck();
+
     deck.shuffle();
-   // deck.shuffle();
-   // deck.shuffle();
-   // deck.shuffle();
-   // //deck.printDeck();
 
-   // //Drawing Cards
-   // hand.drawCard(&deck);
-   // hand.drawCard(&deck);
-   ////hand.drawCard(&deck);
-   // //hand.drawCard(&deck);
-   // //hand.drawCard(&deck);
-   // //hand.drawCard(&deck);
-
-   //// std::cout << "\nYour Hand:\n";
-   // hand.getCardsInHand();
-   // //deck.printDeck();
-   //// hand.clear();
-   //// hand.getCardsInHand();
-   // std::cout << "Score: ";
-   // std::cout<<hand.getOneScore();
-   // std::cout << "\n";
-   // //deck.printDeck();
-   // hand.clear();
-   // //hand.drawCard(&deck);
-   // //hand.drawCard(&deck);
-   // hand.getCardsInHand();
-   // std::cout << "\nScore: ";
-   // std::cout << hand.getOneScore();
-   // std::cout << "\n";
-
-   // std::cout << hand.getCardForSplit().cardGraphic();
-
-    std::cout << "PLAYER HAND\n";
-
-    player.hit(&playerHand, &deck);
-    player.hit(&playerHand, &deck);
-
-    playerHand.getCardsInHand();
-
-    player.split(&playerHand, &playerHand2);
-
-    playerHand.getCardsInHand();
-    playerHand2.getCardsInHand();
-
-   // std::cout << "Score: " << std::endl;
-  //  hand.getOneScore();
     
-   // std::cout << "Clear hand!!";
-    //hand.clear();
-   // hand.getCardsInHand();
-   // std::cout << "\nOne Score: " << hand.getOneScore() << std::endl;
-   // if (hand.isBustOne())  std::cout << ":(((";
-   // else std::cout << "Phew";
-   // std::cout << "\nEleven Score: " << hand.getElevenScore() << std::endl;
-   // if (hand.isBustEleven())  std::cout << ":(((";
-   // else std::cout << "Phew";
-    //deck.printDeck();
 
+    //do {
+    //    input = baseMenu();
+    //    switch (input) {
+    //    case 1:
 
-   /* do {
-        input = menu();
-        switch (input) {
-        case 1:
-            deck.generateDeck();
-            std::cout << "Generated Deck";
+    //        pauseScreen();
+    //        break;
+    //    case 2:
 
-            pauseScreen();
-            break;
-        case 2:
-            deck.shuffle();
+    //        pauseScreen();
+    //        break;
+    //    case 3:
+    //        testMenu();
 
-            pauseScreen();
-            break;
-        case 3:
-            deck.printDeck();
+    //        pauseScreen();
+    //        break;
+    //    case 4:
 
-            pauseScreen();
-            break;        
-        case 4:
-            std::cout << deck.getCard().cardGraphic();
+    //        pauseScreen();
+    //        break;
 
-            pauseScreen();
-            break;        
-        case 5:
-            deck.makeEmpty();
-
-            pauseScreen();
-            break;
-        case 6:
-            std::cout << "Goodbye";
-            pauseScreen();
-        }
-        clearScreen();
-    } while (input != 6);
-
-    return 0;*/
-
+    //        clearScreen();
+    //    } 
+    //} while (input != 4);
 }
 
-int menu() {
+int baseMenu() {
     int input;
-    std::cout << "Enter the number for the eoperation you wish to perform from the menu." << std::endl
-        << "1. Generate Deck" << std::endl
-        << "2. Shuffle Deck" << std::endl
-        << "3. Print Deck" << std::endl
-        << "4. Get Card" << std::endl
-        << "5. Make Deck Empty" << std::endl
-        << "6. Exit program" << std::endl
+    std::cout << "Enter the number for the operation you wish to perform from the menu." << std::endl
+        << "1. Start Game" << std::endl
+        << "2. Rules" << std::endl
+        << "3. Test Menu" << std::endl
+        << "4. Exit Program" << std::endl
         << std::endl;
     std::cout << "Enter Choice: ";
     std::cin >> input;
-    while (input < 1 or input > 6) {
+    while (input < 1 or input > 4) {
         std::cout << "Enter a valid Choice from the menu: ";
         if (std::cin.fail()) {
             std::cin.clear();
@@ -154,6 +85,134 @@ int menu() {
     }
     return input;
 }
+
+int testMenuPrompt() {
+    int input;
+    std::cout << "Enter the number for the operation you wish to perform from the menu." << std::endl
+        << "1. Generate Deck" << std::endl
+        << "2. Generate Casino Deck" << std::endl
+        << "3. Shuffle Deck" << std::endl
+        << "4. Print Deck" << std::endl
+        << "5. Get Card" << std::endl
+        << "6. Empty Deck" << std::endl
+        << "7. Draw Card Into Test Hand" << std::endl
+        << "8. Display Hand" << std::endl
+        << "9. Get One Score" << std::endl
+        << "10. Get Eleven Score" << std::endl
+        << "11. Clear Hand" << std::endl
+        << "12. Test Double" << std::endl
+        << "13. Test Split" << std::endl
+        << "14. Add Specific Card To Hand" << std::endl
+        << "15. Exit Menu" << std::endl
+        << std::endl;
+    std::cout << "Enter Choice: ";
+    std::cin >> input;
+    while (input < 1 or input > 15) {
+        std::cout << "Enter a valid Choice from the menu: ";
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+        }
+        std::cin >> input;
+    }
+    return input;
+}
+
+void testMenu() {
+    Deck testdeck;
+    Hand testhand1;
+    Hand testhand2;
+    Player testplayer(50000);
+
+    int input;
+    do {
+        input = testMenuPrompt();
+        switch (input) {
+        case 1:
+            testdeck.generateDeck();
+            std::cout << "Generated Deck";
+
+            pauseScreen();
+            break;        
+        case 2:
+            testdeck.generateCasinoDeck();
+            std::cout << "Generated Deck";
+
+            pauseScreen();
+            break;
+        case 3:
+            testdeck.shuffle();
+
+            pauseScreen();
+            break;
+        case 4:
+            testdeck.printDeck();
+
+            pauseScreen();
+            break;
+        case 5:
+            std::cout << testdeck.getCard().cardGraphic();
+
+            pauseScreen();
+            break;
+        case 6:
+            testdeck.makeEmpty();
+
+            pauseScreen();
+            break;     
+        case 7:
+            testhand1.drawCard(&testdeck);
+
+            pauseScreen();
+            break;        
+        case 8:
+            testhand1.getCardsInHand();
+
+            pauseScreen();
+            break;        
+        case 9:
+            std::cout << "TestHand1 One Score: " << testhand1.getOneScore();
+
+            pauseScreen();
+            break;
+        case 10:
+            std::cout << "TestHand1 Eleven Score: " << testhand1.getElevenScore();
+
+            pauseScreen();
+            break;        
+        case 11:
+            testhand1.clear();
+            testhand2.clear();
+
+            pauseScreen();
+            break;        
+        case 12:
+            if (testplayer.checkDub(&testhand1)) {
+                testplayer.dub(&testhand1);
+            }
+            else {
+                std::cout << "Can't Double\n";
+            }
+            pauseScreen();
+            break;        
+        case 13:
+            if (testplayer.checkSplit(&testhand1)) {
+                testplayer.split(&testhand1, &testhand2);
+            }
+            else {
+                std::cout << "Can't Split\n";
+            }
+            pauseScreen();
+            break;
+        case 14:
+
+            pauseScreen();
+            break;
+        }
+        clearScreen();
+    } while (input != 15);
+}
+
 void clearScreen() {
     system("CLS");
     if (std::cin.fail()) {
