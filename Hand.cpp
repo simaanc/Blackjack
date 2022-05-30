@@ -242,6 +242,15 @@ bool Hand::isBustEleven() {
         return false;
 }
 
+bool Hand::isBust() {
+    if (isBustEleven()) {
+        if (isBustOne()) {
+            return true;
+        }
+        return false;
+    } return false;
+}
+
 bool Hand::isCharlie() {
     if (handSize == maxSize and isPlayer) {
         return true;

@@ -64,6 +64,9 @@ public:
     //Checks if Player/Dealer Hand > 21 if Ace = 11
     bool isBustEleven();
 
+    //Checks if Bust in General
+    bool isBust();
+
     //Auto win if player gets 5 cards in their hand without bust
     bool isCharlie();
 

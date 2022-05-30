@@ -9,7 +9,6 @@
 
 class Dealer {
 
-
 private:
 	std::string dealerBlankHandString(Hand* hand);
 

@@ -58,24 +58,28 @@ bool Player::hit(Hand *hand, Deck *deck) {
 }
 
 bool Player::checkDub(Hand* hand) {
-    if (hand->getHandSize() == 2 && hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
-        if (bet * 2 <= chips) {
-            return true;
-        }
-        return false;
-    } else {
-        return false;
-    }
-}
 
-bool Player::checkSplit(Hand* hand) {
-    if (hand->getHandSize() > 1) {
-
-        if (hand->getCardValue(0) == hand->getCardValue(1)) {
+    if (!((chips - hand->bet) < 0)) {
+        if (hand->getHandSize() == 2 && hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
             return true;
         }
         else {
             return false;
+        }
+    }
+    return false;
+}
+
+bool Player::checkSplit(Hand* hand) {
+    if (!((chips - hand->bet) < 0)) {
+        if (hand->getHandSize() > 1 && numOfHands == 0) {
+
+            if (hand->getCardValue(0) == hand->getCardValue(1)) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
     else {
@@ -84,7 +88,9 @@ bool Player::checkSplit(Hand* hand) {
 }
 
 void Player::dub(Hand* hand) {
-
+    int originalbet = hand->bet;
+    hand->bet = originalbet * 2;
+    chips = chips - originalbet;
 }
 
 void Player::split(Hand* hand1, Hand* hand2) {
@@ -93,9 +99,10 @@ void Player::split(Hand* hand1, Hand* hand2) {
     hand2->addCard(hand1->getCardForSplit());
     hand1->removeCard();
 
-    int hand1bet = hand1->bet;
+    hand2->bet = hand1->bet;
 
-    hand2->bet = hand1bet;
+
+    chips = chips - hand1->bet;
 
 }
 
@@ -105,4 +112,9 @@ void Player::clearHands(Hand* hand1, Hand* hand2)
     hand2->clear();
 
     numOfHands = 0;
+}
+
+void Player::win(float mult, float payout)
+{
+    chips = chips + (mult * payout);
 }

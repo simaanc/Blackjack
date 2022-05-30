@@ -7,10 +7,7 @@
 */
 
 #include <iostream>
-#include "Deck.h"
-#include "Hand.h"
-#include "Player.h"
-#include "Dealer.h"
+
 #include "Blackjack.h"
 
 int baseMenu();
@@ -54,6 +51,7 @@ int main() {
 
 int baseMenu() {
 	int input;
+	std::cout << "Please Maximize Console For Best Experience.\n" << std::endl;
 	std::cout << "Enter the number for the operation you wish to perform from the menu." << std::endl
 		<< "1. Start Game" << std::endl
 		<< "2. Rules" << std::endl

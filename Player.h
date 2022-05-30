@@ -13,12 +13,8 @@ private:
     int chips;
     int bet;
 
-    //How much payout will be multiplied by
-    int multiplier;
-    //Amount that will be given to player if they win
-    int payout;
-
 public:
+
     Player(int startingchips);
 
     bool setBet(int bet, Hand *hand);
@@ -44,4 +40,6 @@ public:
     void split(Hand *hand1, Hand *hand2);
 
     void clearHands(Hand* hand1, Hand* hand2);
+
+    void win(float mult, float payout);
 };
