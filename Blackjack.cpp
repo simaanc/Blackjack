@@ -17,14 +17,10 @@ void clearScreen();
 void clearScreenAlt();
 void pauseScreen();
 
-
-
-
-
 void Blackjack::setup()
 {
-	//deck.generateCasinoDeck();
-	//deck.shuffle();
+	deck.generateCasinoDeck();
+	deck.shuffle();
 
 	startGame();
 }
@@ -63,6 +59,8 @@ void Blackjack::startGame() {
 
 		error = 0;
 
+		std::cout << "\nYou currently have: " << player.getChips();
+
 		std::cout << "\nHow much would you like to bet? ";
 		std::cin >> bet;
 
@@ -90,17 +88,6 @@ void Blackjack::dealing() {
 	int input;
 
 	clearScreen();
-
-
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-	deck.addCard(Card(EIGHT, HEART));
-
 
 	playerHand1.drawCard(&deck);
 
@@ -133,7 +120,7 @@ void Blackjack::dealing() {
 	}
 }
 
-void Blackjack::playerWin(float mult, Hand* hand)
+void Blackjack::playerWin(Hand* hand)
 {
 	player.win(2, hand->bet);
 	
@@ -153,7 +140,7 @@ void Blackjack::dealerWin(Hand *hand) {
 
 void Blackjack::tie(Hand *hand)
 {
-	playerWin(1, hand);
+	player.win(1, hand->bet);
 
 }
 
@@ -229,9 +216,6 @@ void Blackjack::handOnePrompts() {
 			case 1:
 				playerHand1.drawCard(&deck);
 
-				std::cout << "B";
-
-
 				if (playerHand1.isBust() && !dualHands()) {
 
 					dealerWin(&playerHand1);
@@ -257,7 +241,7 @@ void Blackjack::handOnePrompts() {
 				break;
 			case 2:
 				if (!dualHands()) {
-					checkWinner();
+					dealerTurn();
 				}
 				else if (dualHands()) {
 					redrawHands();
@@ -318,7 +302,7 @@ void Blackjack::handOnePrompts() {
 				break;
 			case 2:
 				if (!dualHands()) {
-					checkWinner();
+					dealerTurn();
 				}
 				else if (dualHands()) {
 					redrawHands();
@@ -353,7 +337,6 @@ void Blackjack::handOnePrompts() {
 			case 1:
 				playerHand1.drawCard(&deck);
 
-				std::cout << "D";
 				if (playerHand1.isBust() && !dualHands()) {
 					dealerWin(&playerHand1);
 					redrawRevealedHands();
@@ -378,7 +361,7 @@ void Blackjack::handOnePrompts() {
 				break;
 			case 2:
 				if (!dualHands()) {
-					checkWinner();
+					dealerTurn();
 				}
 				else if (dualHands()) {
 					redrawHands();
@@ -429,6 +412,8 @@ void Blackjack::handTwoPrompts() {
 
 				break;
 			case 2:
+				
+				dealerTurn();
 
 				break;
 			}
@@ -456,6 +441,7 @@ void Blackjack::handTwoPrompts() {
 				}
 
 			case 2:
+				dealerTurn();
 
 				break;
 
@@ -504,15 +490,89 @@ void Blackjack::checkWinner()
 {
 	std::cout.flush();
 
+	clearScreenAlt();
 
 	redrawRevealedHands();
+
+	std::cout.flush();
+
+
+	if (!dualHands()) {
+		if (!(dealerHand.isBust())) {
+			if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
+				playerWin(&playerHand1);
+
+				std::cout << "\nYou Won!\n";
+
+			}
+			else if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
+				dealerWin(&playerHand1);
+
+				std::cout << "\nUnfortunetly You Lost :(\n";
+			}
+			else if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
+				tie(&playerHand1);
+
+				std::cout << "\nYou Tied.\n";
+			}
+		}
+		else if (dealerHand.isBust()) {
+			playerWin(&playerHand1);
+			}
+	}
+	else if (dualHands()) {
+		if (!(dealerHand.isBust())) {
+			//Hand 1
+			if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
+				playerWin(&playerHand1);
+
+				std::cout << "\nYou Won On Hand 1!\n";
+
+
+			}
+			if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
+				dealerWin(&playerHand1);
+
+				std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+
+			}
+			if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
+				tie(&playerHand1);
+
+				std::cout << "\nYou Tied On Hand 1.\n";
+
+			}
+			//Hand 2
+			if (playerHand2.getElevenScore() > dealerHand.getElevenScore()) {
+				playerWin(&playerHand2);
+
+				std::cout << "\nYou Won On Hand 2!\n";
+
+
+			}
+			if (playerHand2.getElevenScore() < dealerHand.getElevenScore()) {
+				dealerWin(&playerHand2);
+
+				std::cout << "\nUnfortunetly You Lost On Hand 2 :(\n";
+
+			}
+			if (playerHand2.getElevenScore() == dealerHand.getElevenScore()) {
+				tie(&playerHand2);
+
+				std::cout << "\nYou Tied On Hand 2.\n";
+
+			}
+		}
+		else if (dealerHand.isBust()) {
+			playerWin(&playerHand1);
+			playerWin(&playerHand2);
+		}
+	}
+		newRound();
 }
 
 void Blackjack::redrawRevealedHands() {
 	clearScreen();
-	clearScreenAlt();
-
-	std::cout.flush();
 
 	std::cout << "Dealer Hand:\n";
 
@@ -617,6 +677,31 @@ void Blackjack::newRound()
 		exit;
 	}
 
+}
+
+void Blackjack::dealerTurn()
+{
+	redrawRevealedHands();
+
+	do {
+		dealer.hit(&dealerHand, &deck);
+
+		redrawRevealedHands();
+
+		if (dealerHand.isBust()) {
+			if (dualHands()) {
+				std::cout << "Dealer Busted You Win On Both Hands!";
+			}
+			else if (!dualHands()) {
+				std::cout << "Dealer Busted You Win!";
+			}
+			break;
+			newRound();
+		}
+
+	} while (dealer.hitCheck(&dealerHand));
+
+	checkWinner();
 }
 
 int Blackjack::handOnePlayerMenu()

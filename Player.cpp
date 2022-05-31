@@ -74,12 +74,14 @@ bool Player::hit(Hand* hand, Deck* deck) {
 
 bool Player::checkDub(Hand* hand) {
 
-	if (!((chips - hand->bet) < 0)) {
-		if (hand->getHandSize() == 2 && hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
-			return true;
-		}
-		else {
-			return false;
+	if (hand->getHandSize() == 2) {
+		if (!((chips - hand->bet) < 0)) {
+			if (hand->getOneScore() == 9 || hand->getOneScore() == 10 || hand->getOneScore() == 11) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 	return false;

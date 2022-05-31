@@ -20,7 +20,7 @@ public:
 
 	void dealing();
 
-	void playerWin(float mult, Hand* hand);
+	void playerWin(Hand* hand);
 
 	void playerBlackJackWin(Hand* hand);
 
@@ -44,10 +44,9 @@ public:
 
 	void newRound();
 
-	void endPlayerTurn();
+	void dealerTurn();
 
 	bool dualHands();
-
 
 	void saveAcc(Player);
 
