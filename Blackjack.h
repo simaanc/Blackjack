@@ -47,5 +47,10 @@ public:
 	void endPlayerTurn();
 
 	bool dualHands();
+
+
+	void saveAcc(Player);
+
+	void save();
 };
 

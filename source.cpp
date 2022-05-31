@@ -31,7 +31,7 @@ int main() {
 
 			break;
 		case 2:
-
+			
 			pauseScreen();
 			break;
 		case 3:
@@ -40,6 +40,11 @@ int main() {
 			pauseScreen();
 			break;
 		case 4:
+			blackjack.save();
+			
+			pauseScreen();
+			break;
+		case 5:
 
 			pauseScreen();
 			break;
@@ -56,7 +61,8 @@ int baseMenu() {
 		<< "1. Start Game" << std::endl
 		<< "2. Rules" << std::endl
 		<< "3. Test Menu" << std::endl
-		<< "4. Exit Program" << std::endl
+		<< "4. Save to leader board" << std::endl
+		<< "5. Exit Program" << std::endl
 		<< std::endl;
 	std::cout << "Enter Choice: ";
 	std::cin >> input;
@@ -107,7 +113,7 @@ void testMenu() {
 	Deck testdeck;
 	Hand testhand1;
 	Hand testhand2;
-	Player testplayer(50000);
+	Player testplayer(50000, "test");
 
 	int input;
 	do {
@@ -127,7 +133,7 @@ void testMenu() {
 			break;
 		case 3:
 			testdeck.shuffle();
-
+			std::cout << "Shuffle Deck!";
 			pauseScreen();
 			break;
 		case 4:
@@ -142,7 +148,7 @@ void testMenu() {
 			break;
 		case 6:
 			testdeck.makeEmpty();
-
+			std::cout << "Clear all cards in the deck!";
 			pauseScreen();
 			break;
 		case 7:
@@ -197,3 +203,4 @@ void testMenu() {
 		clearScreen();
 	} while (input != 15);
 }
+
