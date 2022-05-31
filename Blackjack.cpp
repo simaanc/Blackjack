@@ -412,6 +412,17 @@ void Blackjack::handTwoPrompts() {
 			case 1:
 				playerHand2.drawCard(&deck);
 
+				if (playerHand2.isBust()) {
+					dealerWin(&playerHand2);
+					redrawRevealedHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted On Hand 2 :(\n";
+
+					newRound();
+				}
+
 				break;
 			case 2:
 
@@ -429,7 +440,17 @@ void Blackjack::handTwoPrompts() {
 			case 1:
 				playerHand2.drawCard(&deck);
 
-				break;
+				if (playerHand2.isBust()) {
+					dealerWin(&playerHand2);
+					redrawRevealedHands();
+
+					std::cout.flush();
+
+					std::cout << "\nUnfortunetly You Busted On Hand 2 :(\n";
+
+					newRound();
+				}
+
 			case 2:
 
 				break;
@@ -583,7 +604,10 @@ void Blackjack::newRound()
 		std::cin >> input;
 	} while (!std::cin.fail() && input[0] != 'y' && input[0] != 'n' && input[0] != 'Y' && input[0] != 'N');
 	if (input[0] == 'y' || input[0] == 'Y') {
-		
+		player.clearHands(&playerHand1, &playerHand2);
+		dealerHand.clear();
+
+		startGame();
 	}
 	else {
 		exit;
@@ -695,11 +719,6 @@ int Blackjack::handOnePlayerMenu()
 		}
 		return input;
 	}
-}
-
-void Blackjack::endPlayerTurn()
-{
-	std::cout << "\nPLAYER TURN ENDED";
 }
 
 bool Blackjack::dualHands() {

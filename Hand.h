@@ -54,7 +54,6 @@ public:
 
     //Clear the hand
     void clear();
-
     //Checks for Ace
     bool checkAce();
 
