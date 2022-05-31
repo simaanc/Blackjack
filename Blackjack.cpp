@@ -104,6 +104,8 @@ void Blackjack::dealing() {
 		if (dealerHand.isBlackJack()) {
 			clearScreenAlt();
 			redrawRevealedHands();
+			std::cout << "\nYou both got a Blackjack\n";
+
 			tie(&playerHand1);
 			newRound();
 		}
@@ -111,6 +113,8 @@ void Blackjack::dealing() {
 		else {
 			clearScreenAlt();
 			redrawRevealedHands();
+
+			std::cout << "\nYou got a Blackjack and the dealer didn't!\n";
 			playerBlackJackWin(&playerHand1);
 			newRound();
 		}
@@ -565,22 +569,41 @@ void Blackjack::checkWinner()
 
 	if (!dualHands()) {
 		if (!(dealerHand.isBust())) {
-			//if (playerHand1.isBustOne)
-			if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
-				playerWin(&playerHand1);
+			if (playerHand1.isBustEleven() && !playerHand1.isBustOne()) {
+				if (playerHand1.getOneScore() > dealerHand.getElevenScore()) {
+					playerWin(&playerHand1);
 
-				std::cout << "\nYou Won!\n";
+					std::cout << "\nYou Won!\n";
 
+				}
+				else if (playerHand1.getOneScore() < dealerHand.getElevenScore()) {
+					dealerWin(&playerHand1);
+
+					std::cout << "\nUnfortunetly You Lost :(\n";
+				}
+				else if (playerHand1.getOneScore() == dealerHand.getElevenScore()) {
+					tie(&playerHand1);
+
+					std::cout << "\nYou Tied.\n";
+				}
 			}
-			else if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
-				dealerWin(&playerHand1);
+			else {
+				if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
+					playerWin(&playerHand1);
 
-				std::cout << "\nUnfortunetly You Lost :(\n";
-			}
-			else if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
-				tie(&playerHand1);
+					std::cout << "\nYou Won!\n";
 
-				std::cout << "\nYou Tied.\n";
+				}
+				else if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
+					dealerWin(&playerHand1);
+
+					std::cout << "\nUnfortunetly You Lost :(\n";
+				}
+				else if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
+					tie(&playerHand1);
+
+					std::cout << "\nYou Tied.\n";
+				}
 			}
 		}
 		else if (dealerHand.isBust()) {
@@ -589,70 +612,146 @@ void Blackjack::checkWinner()
 	}
 	else if (dualHands()) {
 		if (!(dealerHand.isBust())) {
+
 			if (playerHand2.isBust() && !playerHand1.isBust()) {
 				//Hand 1
-				if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
-					playerWin(&playerHand1);
+				if (playerHand1.isBustEleven() && !playerHand1.isBustOne()) {
+					if (playerHand1.getOneScore() > dealerHand.getElevenScore()) {
+						playerWin(&playerHand1);
 
-					std::cout << "\nYou Won On Hand 1!\n";
+						std::cout << "\nYou Won On Hand 1!\n";
 
 
+					}
+					if (playerHand1.getOneScore() < dealerHand.getElevenScore()) {
+						dealerWin(&playerHand1);
+
+						std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+
+					}
+					if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
+						tie(&playerHand1);
+
+						std::cout << "\nYou Tied On Hand 1.\n";
+
+					}
+
+					std::cout << "\nUnfotunetly You Busted On Hand 2 :(\n";
 				}
-				if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
-					dealerWin(&playerHand1);
+				else {
+					if (playerHand1.getOneScore() > dealerHand.getElevenScore()) {
+						playerWin(&playerHand1);
 
-					std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+						std::cout << "\nYou Won On Hand 1!\n";
 
+
+					}
+					if (playerHand1.getOneScore() < dealerHand.getElevenScore()) {
+						dealerWin(&playerHand1);
+
+						std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+
+					}
+					if (playerHand1.getOneScore() == dealerHand.getElevenScore()) {
+						tie(&playerHand1);
+
+						std::cout << "\nYou Tied On Hand 1.\n";
+
+					}
+
+					std::cout << "\nUnfotunetly You Busted On Hand 2 :(\n";
 				}
-				if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
-					tie(&playerHand1);
-
-					std::cout << "\nYou Tied On Hand 1.\n";
-
-				}
-
-				std::cout << "\nUnfotunetly You Busted On Hand 2 :(\n";
 			}
 			else {
-				//Hand 1
-				if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
-					playerWin(&playerHand1);
+				if (playerHand1.isBustEleven() && !playerHand1.isBustOne()) {
+					//Hand 1
+					if (playerHand1.getOneScore() > dealerHand.getElevenScore()) {
+						playerWin(&playerHand1);
 
-					std::cout << "\nYou Won On Hand 1!\n";
+						std::cout << "\nYou Won On Hand 1!\n";
 
 
+					}
+					if (playerHand1.getOneScore() < dealerHand.getElevenScore()) {
+						dealerWin(&playerHand1);
+
+						std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+
+					}
+					if (playerHand1.getOneScore() == dealerHand.getElevenScore()) {
+						tie(&playerHand1);
+
+						std::cout << "\nYou Tied On Hand 1.\n";
+
+					}
 				}
-				if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
-					dealerWin(&playerHand1);
+				if (playerHand2.isBustEleven() && !playerHand2.isBustOne()) {
 
-					std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+					//Hand 2
+					if (playerHand2.getOneScore() > dealerHand.getElevenScore()) {
+						playerWin(&playerHand2);
 
+						std::cout << "\nYou Won On Hand 2!\n";
+
+
+					}
+					if (playerHand2.getOneScore() < dealerHand.getElevenScore()) {
+						dealerWin(&playerHand2);
+
+						std::cout << "\nUnfortunetly You Lost On Hand 2 :(\n";
+
+					}
+					if (playerHand2.getOneScore() == dealerHand.getElevenScore()) {
+						tie(&playerHand2);
+
+						std::cout << "\nYou Tied On Hand 2.\n";
+
+					}
 				}
-				if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
-					tie(&playerHand1);
+				if (!playerHand1.isBustEleven() && !playerHand1.isBustOne()) {
+					//Hand 1
+					if (playerHand1.getElevenScore() > dealerHand.getElevenScore()) {
+						playerWin(&playerHand1);
 
-					std::cout << "\nYou Tied On Hand 1.\n";
+						std::cout << "\nYou Won On Hand 1!\n";
 
+
+					}
+					if (playerHand1.getElevenScore() < dealerHand.getElevenScore()) {
+						dealerWin(&playerHand1);
+
+						std::cout << "\nUnfortunetly You Lost On Hand 1 :(\n";
+
+					}
+					if (playerHand1.getElevenScore() == dealerHand.getElevenScore()) {
+						tie(&playerHand1);
+
+						std::cout << "\nYou Tied On Hand 1.\n";
+
+					}
 				}
-				//Hand 2
-				if (playerHand2.getElevenScore() > dealerHand.getElevenScore()) {
-					playerWin(&playerHand2);
+				if (!playerHand2.isBustEleven() && !playerHand2.isBustOne()) {
 
-					std::cout << "\nYou Won On Hand 2!\n";
+					//Hand 2
+					if (playerHand2.getElevenScore() > dealerHand.getElevenScore()) {
+						playerWin(&playerHand2);
+
+						std::cout << "\nYou Won On Hand 2!\n";
 
 
-				}
-				if (playerHand2.getElevenScore() < dealerHand.getElevenScore()) {
-					dealerWin(&playerHand2);
+					}
+					if (playerHand2.getElevenScore() < dealerHand.getElevenScore()) {
+						dealerWin(&playerHand2);
 
-					std::cout << "\nUnfortunetly You Lost On Hand 2 :(\n";
+						std::cout << "\nUnfortunetly You Lost On Hand 2 :(\n";
 
-				}
-				if (playerHand2.getElevenScore() == dealerHand.getElevenScore()) {
-					tie(&playerHand2);
+					}
+					if (playerHand2.getElevenScore() == dealerHand.getElevenScore()) {
+						tie(&playerHand2);
 
-					std::cout << "\nYou Tied On Hand 2.\n";
+						std::cout << "\nYou Tied On Hand 2.\n";
 
+					}
 				}
 			}
 		}
