@@ -731,7 +731,6 @@ void Blackjack::saveAcc(Player user)
 	}
 	else {
 		outFile << "\n" << user.getName() << "\t\t" << user.getChips();
-		while ()
 		std::cout << "Player saved";
 		outFile.close();
 	}
