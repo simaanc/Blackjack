@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Blackjack.h"
+#include <fstream>
 
 
 Deck deck;
@@ -10,11 +11,15 @@ Hand playerHand2;
 Hand dealerHand;
 Dealer dealer;
 
-Player player(50000);
+Player player = player.createAcc();
 
 void clearScreen();
 void clearScreenAlt();
 void pauseScreen();
+
+
+
+
 
 void Blackjack::setup()
 {
@@ -33,14 +38,13 @@ void Blackjack::startGame() {
 
 	int bet;
 
-	std::string yesorno;
+	std::string yesorno, name;
 
 	int error;
 
 	clearScreen();
-
-	std::cout << "You currently have: " << player.getChips();
-
+	
+	
 	do {
 		if (player.getChips() == 0) {
 			do
@@ -729,6 +733,34 @@ bool Blackjack::dualHands() {
 		return false;
 	}
 }
+
+
+
+void Blackjack::saveAcc(Player user)
+{
+	std::ofstream outFile;
+	
+
+
+	//open the file	
+	outFile.open("leaderBoard.txt", std::ios::app);
+	if (!outFile) {
+		std::cout << "Unable to open file";
+		return;
+	}
+	else {
+		outFile << "\n" << user.getName() << "\t\t" << user.getChips();
+		std::cout << "Player saved";
+		outFile.close();
+	}
+}
+
+// use this helper function to call in source.cpp
+void Blackjack::save()
+{
+	saveAcc(player);
+}
+
 
 
 void clearScreen() {

@@ -9,13 +9,13 @@
 class Player {
 private:
     int numOfHands = 0;
-
+    std::string name;
     int chips;
     int bet;
 
 public:
 
-    Player(int startingchips);
+    Player(int startingchips, std::string name);
 
     bool setBet(int bet, Hand *hand);
 
@@ -24,6 +24,8 @@ public:
     int getNumberOfHands();
 
     int getChips();
+
+    std::string getName();
 
     int getBet(Hand *hand);
 
@@ -42,4 +44,10 @@ public:
     void clearHands(Hand* hand1, Hand* hand2);
 
     void win(float mult, float payout);
+
+    Player createAcc();
+
+   
+
+
 };

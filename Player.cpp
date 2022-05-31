@@ -7,13 +7,22 @@
 */
 
 #include "Player.h"
+#include<iostream>
 #include "Deck.h"
 #include "Hand.h"
 
-Player::Player(int startingchips)
+Player::Player(int startingchips, std::string oName)
 {
 	chips = startingchips;
+	name = oName;
 }
+
+/*Player::Player(const Player& player)
+{
+	chips = player.chips;
+	name = player.name;
+}
+*/
 
 bool Player::setBet(int bet, Hand* hand) {
 	if (bet > chips) {
@@ -38,6 +47,11 @@ int Player::getNumberOfHands()
 int Player::getChips()
 {
 	return chips;
+}
+
+std::string Player::getName()
+{
+	return name;
 }
 
 int Player::getBet(Hand* hand) {
@@ -120,3 +134,18 @@ void Player::win(float mult, float payout)
 {
 	chips = chips + (mult * payout);
 }
+
+Player Player::createAcc()
+{
+	std::string name;
+	std::string line;
+
+	// ask for the username
+	std::cout << "Please enter your username: ";
+	std::cin >> name;
+	Player newPlayer(50000, name);
+	std::cout << "Your username is: " << newPlayer.getName() << "\nYou currently have: " << newPlayer.getChips() << "\n";
+
+	return newPlayer;
+}
+
